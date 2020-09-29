@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/09/2020 10:45:08 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="enfermedadesbd" name="modelo.Vacuna" optimistic-lock="version" table="vacuna">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="45" name="nombre" not-null="true"/>
+    </property>
+    <property name="descripcion" type="java.lang.String">
+      <column name="descripcion"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="false" name="dosises" table="dosis" cascade="all">
+      <key>
+        <column name="vacuna_id" not-null="true"/>
+      </key>
+      <one-to-many class="modelo.Dosis"/>
+    </set>
+  </class>
+</hibernate-mapping>
